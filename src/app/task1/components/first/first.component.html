@@ -1,0 +1,33 @@
+<p>first works!</p>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Name: {{name}}</h5>
+            <p class="card-text">
+                Price: ${{price}} <br />
+                Description: {{description}} <br />
+                Category: {{getCategory}} <br />
+                Avaliable: {{converIsAvaliable(isAvaliable)}} <br />
+            </p>
+        </div>
+    </div>
+</div>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let product of products; let i = index">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Name: {{product.name}}</h5>
+                    <p class="card-text">
+                        Price: ${{product.price}} <br />
+                        Description: {{product.description}} <br />
+                        Category: {{convertCategory(product.category)}} <br />
+                        Avaliable: {{converIsAvaliable(product.isAvaliable)}} <br />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
