@@ -4,12 +4,16 @@ import { ProductComponent } from './components/product-list/product/product.comp
 import { FirstComponent } from './components/first/first.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { Task1RoutingModule } from './task1-routing.module';
+import { CardListComponent } from './components/card-list/card-list.component';
+import { CardComponent } from './components/card-list/card/card.component';
 
 @NgModule({
   declarations: [
     ProductComponent,
     FirstComponent,
-    ProductListComponent
+    ProductListComponent,
+    CardListComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,

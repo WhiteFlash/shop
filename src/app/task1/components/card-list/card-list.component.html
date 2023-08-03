@@ -1,0 +1,12 @@
+<div class="container">
+
+    <p>card-list works!</p>
+    <div class="row">
+        <ng-container *ngIf="products.length > 0; else emptyBasket">
+            <app-card *ngFor="let product of products; let i = index;" [product]="product" class="col-md-4"></app-card>
+        </ng-container>
+        <ng-template #emptyBasket>
+            <p>The bucket is empty</p>
+        </ng-template>
+    </div>
+</div>

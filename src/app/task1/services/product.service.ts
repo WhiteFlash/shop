@@ -6,6 +6,7 @@ import { IProduct, Category } from '../models/product';
 })
 export class ProductService {
 
+  products: Array<IProduct> = this.getProducts();
   constructor() { }
 
   getProducts(): Array<IProduct> {
@@ -32,4 +33,7 @@ export class ProductService {
     }]
   }
 
+  addProduct(value: IProduct): void {
+    this.products.push(value);
+  }
 }
