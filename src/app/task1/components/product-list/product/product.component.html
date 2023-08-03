@@ -1,0 +1,22 @@
+<p>product works!</p>
+
+<ng-container *ngIf="product != null">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Product name: {{product.name}}
+                </h5>
+                <div class="card-text">
+                    Price: ${{product.price}} <br />
+                    Description: {{product.description}} <br />
+                    Category: {{converterService.convertCategory(product.category)}} <br />
+                    Avaliable: {{converterService.converIsAvaliable(product.isAvaliable)}} <br />
+                </div>
+            </div>
+            <button type="button" class="btn btn-success" (click)="onAddToCart(product)">
+                {{buyButtonLable}}
+            </button>
+        </div>
+    </div>
+</ng-container>

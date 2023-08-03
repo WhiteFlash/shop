@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductComponent } from './components/product/product.component';
+import { ProductComponent } from './components/product-list/product/product.component';
 import { FirstComponent } from './components/first/first.component';
-
-
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { Task1RoutingModule } from './task1-routing.module';
 
 @NgModule({
   declarations: [
     ProductComponent,
-    FirstComponent
+    FirstComponent,
+    ProductListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    Task1RoutingModule
   ],
-  exports: [ProductComponent, FirstComponent]
+  exports: [ProductListComponent, FirstComponent]
 })
 export class Task1Module { }
