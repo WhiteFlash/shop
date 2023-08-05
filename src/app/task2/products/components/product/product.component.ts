@@ -1,7 +1,6 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { IProduct } from '../../models/product.model';
 import { ConverterService } from '../../services/converter.service';
-import { recorses } from 'src/assets/resources';
 
 @Component({
   selector: 'app-product',
@@ -10,14 +9,12 @@ import { recorses } from 'src/assets/resources';
 })
 export class ProductComponent {
   @Input() product: IProduct | null = null;
+  @Output() addNewProduct = new EventEmitter<IProduct>();
 
   converterService = inject(ConverterService);
 
-  get buyButtonLable() {
-    return recorses.task1.buttonBuy
-  }
-
   onAddToCart(product: IProduct) {
     console.log(`${product.name} has been bought`);
+    this.addNewProduct.emit(product);
   }
 }

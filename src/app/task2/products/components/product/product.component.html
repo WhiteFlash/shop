@@ -12,9 +12,16 @@
                     Avaliable: {{converterService.converIsAvaliable(product.isAvaliable)}} <br />
                 </div>
             </div>
-            <button type="button" class="btn btn-success" (click)="onAddToCart(product)">
-                {{buyButtonLable}}
-            </button>
+            <ng-container *ngIf="product.isAvaliable; else disableButton">
+                <button type="button" class="btn btn-success" (click)="onAddToCart(product)">
+                    Add
+                </button>
+            </ng-container>
+            <ng-template #disableButton>
+                <button disabled type="button" class="btn btn-success" (click)="onAddToCart(product)">
+                    Add
+                </button>
+            </ng-template>
         </div>
     </div>
 </ng-container>
