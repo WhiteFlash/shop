@@ -28,7 +28,7 @@ export class ProductService {
     {
       name: 'Ferrari Enzo',
       description: 'Cool car',
-      price: 2500000,
+      price: 250000,
       isAvaliable: true,
       category: Category.Car
     }]
