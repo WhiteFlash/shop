@@ -11,6 +11,8 @@ import { recorses } from 'src/assets/resources';
 })
 export class ProductComponent {
   @Input() product: IProduct | null = null;
+  // Я бы так сделал
+  // @Input() product!: IProduct;
   converterService = inject(ConverterService);
 
   get buyButtonLable() {

@@ -1,3 +1,6 @@
+// Если тут задать значение каждому идентификатору
+// то может не нужно будет использовать ConverterService
+
 export enum Category {
     Laptop,
     Phone,

@@ -7,6 +7,7 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-list.component.sass']
 })
 export class ProductListComponent {
+  // Подчеркивание в идентификаторе очень редко используется
   private _productService = inject(ProductService)
 
   products = this._productService.getProducts();

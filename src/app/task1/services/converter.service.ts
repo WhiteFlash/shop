@@ -17,5 +17,6 @@ export class ConverterService {
     }
   }
 
+  // такое преобразование лучше делать через пайпы
   converIsAvaliable(value: boolean): string { return value ? 'Yes' : 'No'; }
 }
