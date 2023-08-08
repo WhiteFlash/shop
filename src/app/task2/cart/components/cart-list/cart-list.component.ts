@@ -17,6 +17,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   quantityIncorrectData = this._cartService.getTotalQuantity;
   quantity!: IProduct[];
+  quantity$ = new BehaviorSubject<IProduct[]>([]);
   totalPrice!: number;
 
   ngOnInit(): void {
@@ -26,6 +27,8 @@ export class CartListComponent implements OnInit, OnDestroy {
 
     this._cartService.setItemsToBuy(this._productService.getProducts())
     this._subscription.push(this._cartService.totalQuantity$.subscribe(x => this.quantity = x));
+
+    this._cartService.totalQuantity$.subscribe(x => this.quantity$.next(x));
 
     console.log(`Total quantity is : ${this.quantityIncorrectData}`);
     console.log(`Total price is : ${this.totalPrice}`);
