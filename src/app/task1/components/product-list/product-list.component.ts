@@ -7,7 +7,7 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-list.component.sass']
 })
 export class ProductListComponent {
-  private _productService = inject(ProductService)
+  private productService = inject(ProductService)
 
-  products = this._productService.getProducts();
+  products = this.productService.getProducts();
 }

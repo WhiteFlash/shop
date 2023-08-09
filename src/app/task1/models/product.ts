@@ -1,7 +1,7 @@
 export enum Category {
-    Laptop,
-    Phone,
-    Car
+    Laptop = "Laptop",
+    Phone = "Phone",
+    Car = "Car"
 }
 
 export interface IProduct {

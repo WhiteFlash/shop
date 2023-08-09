@@ -1,6 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
 import { IProduct } from 'src/app/task1/models/product';
-import { ConverterService } from 'src/app/task1/services/converter.service';
 import { recorses } from 'src/assets/resources';
 
 
@@ -10,8 +9,7 @@ import { recorses } from 'src/assets/resources';
   styleUrls: ['./product.component.sass']
 })
 export class ProductComponent {
-  @Input() product: IProduct | null = null;
-  converterService = inject(ConverterService);
+  @Input() product!: IProduct;
 
   get buyButtonLable() {
     return recorses.task1.buttonBuy

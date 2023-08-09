@@ -1,6 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
 import { Category, IProduct } from 'src/app/task1/models/product';
-import { ConverterService } from 'src/app/task1/services/converter.service';
 import { ProductService } from 'src/app/task1/services/product.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { ProductService } from 'src/app/task1/services/product.service';
 export class CardComponent {
   @Input() product: IProduct | null = null;
 
-  converterService = inject(ConverterService);
   private productService = inject(ProductService);
 
   onAddProduct() {

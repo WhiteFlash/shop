@@ -6,6 +6,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { Task1RoutingModule } from './task1-routing.module';
 import { CardListComponent } from './components/card-list/card-list.component';
 import { CardComponent } from './components/card-list/card/card.component';
+import { YesNoPipe } from './pipes/yes-no.pipe';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { CardComponent } from './components/card-list/card/card.component';
     FirstComponent,
     ProductListComponent,
     CardListComponent,
-    CardComponent
+    CardComponent,
+    YesNoPipe,
   ],
   imports: [
     CommonModule,
