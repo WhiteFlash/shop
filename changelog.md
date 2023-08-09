@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 - Добавлены строковые значения для enum файл `src/app/task1/models/product.ts`
 - Удалён `src/app/task1/services/converter.service.ts`, добавлена `Pipe` => `YesNoPipe` 
 
+### Task 2
+### Added: Complete bullet 2 from task list
+- Added modules `Card`, `Products`, `Orders`, `Shared`
+- Added `ProductComponent`
+- Added `ProductListComponent`
+
+### Task 1
 ### Added: Complete bullet 6 from task list
 - Added `CardListComponent`
 - Added `CardComponent`
