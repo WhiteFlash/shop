@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { ProductService } from 'src/app/task2/products/services/product.service';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { IProduct } from 'src/app/task1/models/product';
+import { BehaviorSubject, Subscription, tap } from 'rxjs';
+import { ShopService } from 'src/app/task2/shared/services/shop.service';
+import { IProduct } from 'src/app/task2/shared/model/shop.model';
 
 @Component({
   selector: 'app-cart-list',
@@ -10,35 +10,32 @@ import { IProduct } from 'src/app/task1/models/product';
   styleUrls: ['./cart-list.component.sass']
 })
 export class CartListComponent implements OnInit, OnDestroy {
-  private _subscription: Subscription[] = [];
+  private subscription: Subscription[] = [];
 
-  private _cartService = inject(CartService)
-  private _productService = inject(ProductService)
+  private cartService = inject(CartService);
+  private shopService = inject(ShopService);
 
-  quantityIncorrectData = this._cartService.getTotalQuantity;
-  quantity!: IProduct[];
-  quantity$ = new BehaviorSubject<IProduct[]>([]);
   totalPrice!: number;
+  totalQuantity!: number;
+  items!: IProduct[];
 
   ngOnInit(): void {
-    this._productService.getProducts().forEach(x => {
-      this._cartService.addProduct(x);
-    });
+    this.cartService.setItemsToBuy(this.shopService.getProducts());
 
-    this._cartService.setItemsToBuy(this._productService.getProducts())
-    this._subscription.push(this._cartService.totalQuantity$.subscribe(x => this.quantity = x));
+    this.cartService.items$
+      .pipe(tap((x) => this.items = x))
+      .subscribe();
 
-    this._cartService.totalQuantity$.subscribe(x => this.quantity$.next(x));
+    this.subscription.push(this.cartService.totalPrice$
+      .pipe(tap((x) => this.totalPrice = x))
+      .subscribe());
 
-    console.log(`Total quantity is : ${this.quantityIncorrectData}`);
-    console.log(`Total price is : ${this.totalPrice}`);
-    this.totalPrice = this._cartService.getTotalPrice;
+    this.subscription.push(this.cartService.totalQuantity$
+      .pipe(tap((x) => this.totalQuantity = x))
+      .subscribe());
   }
 
-
-
-
   ngOnDestroy(): void {
-    this._subscription.forEach(x => x.unsubscribe);
+    this.subscription.forEach(x => x.unsubscribe);
   }
 }

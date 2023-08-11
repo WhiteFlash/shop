@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { ProductService } from '../../services/product.service';
-import { IProduct } from '../../models/product.model';
-import { BehaviorSubject } from 'rxjs';
+import { IProduct } from 'src/app/task2/shared/model/shop.model';
+import { ShopService } from 'src/app/task2/shared/services/shop.service';
 
 @Component({
   selector: 'app-product-list',
@@ -10,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
 
-  private _productsService = inject(ProductService);
+  private _productsService = inject(ShopService);
 
   products!: null | IProduct[];
 
@@ -19,9 +18,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._productsService.products$.subscribe(
-      x => this.products = x
-    );
+    this._productsService.products$.subscribe(x => this.products = x);
   }
 
   ngOnDestroy(): void {

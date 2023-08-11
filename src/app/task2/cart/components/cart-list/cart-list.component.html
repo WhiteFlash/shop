@@ -1,11 +1,13 @@
-<div class="container">
-
-    <p>Quantity of bought goods:</p>
-    <p>Total price:</p>
-    <!-- <p>Quantity of bought goods: {{quantity$.value.length}}</p>
-    <p>Total price: {{totalPrice | currency}}</p> -->
+<div class="container border rounded p-3">
+    <div class="d-flex justify-content-between">
+        <span class="badge text-bg-primary">Quantity of bought goods: {{totalQuantity}}</span>
+        <span class="badge text-bg-primary">Total price: {{totalPrice | currency}}</span>
+    </div>
+    <br />
     <div class="row">
-
+        <ng-container *ngIf="items != null || items != undefined">
+            <app-cart-item class="col-md-4" *ngFor="let item of items; let i = index" [item]="item"></app-cart-item>
+        </ng-container>
         <ng-template>
             <p>The bucket is empty</p>
         </ng-template>

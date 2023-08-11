@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { IProduct } from 'src/app/task1/models/product';
+import { IProduct } from '../../shared/model/shop.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,39 +9,54 @@ import { IProduct } from 'src/app/task1/models/product';
 export class CartService implements OnDestroy {
   private subscription: Subscription[] = [];
 
-  totalPrice$ = new BehaviorSubject<number>(0);
-  totalQuantity$ = new BehaviorSubject<IProduct[]>([]);
+  private totalPrice = new BehaviorSubject<number>(0);
+  private totalQuantity = new BehaviorSubject<number>(0);
+  private items = new BehaviorSubject<IProduct[]>([]);
 
-  totalPrice: number[] = [];
-  totalQuantity: IProduct[] = [];
-
-  get getTotalPrice() {
-    let sum = 0;
-    for (let i = 0; i < this.totalQuantity.length; i++) {
-      sum = sum + this.totalQuantity[i].price;
-    }
-    return sum;
-  }
-
-  get getTotalQuantity() {
-    return this.totalQuantity.length + 1;
-  }
+  items$ = this.items.asObservable();
+  totalQuantity$ = this.totalQuantity.asObservable();
+  totalPrice$ = this.totalPrice.asObservable();
 
   addProduct(product: IProduct): void {
-    this.totalQuantity.push(product);
+    const index = this.items.value.findIndex(x => x.id === product.id);
+    this.items.value[index] = product;
+
+    this.setPrice();
+    this.setQuantity();
+  }
+
+  removeProduct(product: IProduct): void {
+    const index = this.items.value.findIndex(x => x.id === product.id);
+    this.items.value.splice(index, 1);
+
+    this.setPrice();
+    this.setQuantity();
   }
 
   setItemsToBuy(products: Array<IProduct>): void {
-    this.totalQuantity$.next(products);
-    this.calculatePrice(products);
+    const itemsAddedToBasket = products.filter(x => x.inTheBasket == true)
+    this.items.next(itemsAddedToBasket);
+
+    this.setPrice();
+    this.setQuantity();
   }
 
-  private calculatePrice(products: Array<IProduct>): void {
+  private setPrice = (): void => {
     let sum = 0;
-    for (let i = 0; i < products.length; i++) {
-      sum = sum + products[i].price;
+    for (let i = 0; i < this.items.value.length; i++) {
+      sum = (this.items.value[i].price * this.items.value[i].quantity) + sum;
     }
-    this.totalPrice$.next(sum);
+    this.totalPrice.next(sum);
+  }
+
+  private setQuantity = (): void => {
+    let sum = 0;
+
+    for (let i = 0; i < this.items.value.length; i++) {
+      sum = this.items.value[i].quantity + sum;
+    }
+
+    this.totalQuantity.next(sum);
   }
 
   ngOnDestroy(): void {

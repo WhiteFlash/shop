@@ -1,1 +1,35 @@
-<p>cart-item works!</p>
+<ng-container>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Product name:
+                </h5>
+                <div class="card-text">
+                    Price: ${{item.price}} <br />
+                    Description: {{item.description}} <br />
+                    Category: {{item.category }} <br />
+                    Avaliable: {{item.isAvaliable | yesNo }} <br />
+                </div>
+            </div>
+            <ng-container *ngIf="item.isAvaliable; else disableButton">
+                <div class="d-flex justify-content-around p-2">
+                    <button type="button" class="btn btn-success" (click)="onQuantityIncrease(item)">
+                        <i class="bi bi-plus-circle"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary" (click)="onQuantityDecrease(item)">
+                        <i class="bi bi-dash-circle"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="onDeleteItem(item)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </ng-container>
+            <ng-template #disableButton>
+                <button disabled type="button" class="btn btn-success">
+                    Add
+                </button>
+            </ng-template>
+        </div>
+    </div>
+</ng-container>
