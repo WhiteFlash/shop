@@ -1,6 +1,6 @@
 <ng-container>
     <div class="container">
-        <div class="card">
+        <div highlight class="card">
             <div class="card-body">
                 <h5 class="card-title">
                     Product name:
@@ -26,8 +26,8 @@
                 </div>
             </ng-container>
             <ng-template #disableButton>
-                <button disabled type="button" class="btn btn-success">
-                    Add
+                <button disabled type="button" class="btn btn-success" (click)="onQuantityIncrease(item)">
+                    <i class="bi bi-plus-circle"></i>
                 </button>
             </ng-template>
         </div>
