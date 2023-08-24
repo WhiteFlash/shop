@@ -2,9 +2,9 @@ All notable changes to this project will be documented in this file.
 
 ### Task 2
 ### Added: Complete bullet 2 from task list
-- Added modules `Card`, `Products`, `Orders`, `Shared`
-- Added `ProductComponent`
-- Added `ProductListComponent`
+- Добавлены модули `Card`, `Products`, `Orders`, `Shared`
+- Добавлены `ProductComponent`, `ProductListComponent` и т.д.
+- Реализована логика сервиса для обработки данных в корзине
 
 ### Added: Работа над ошибками
 - Удалёно `_` для переменной `productService` из `ProductListComponent`.

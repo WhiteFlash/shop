@@ -1,7 +1,6 @@
 <div class="container">
     <div class="row">
-      <!-- Такие длинные условия лучше формировать в классе как некоторый мето is...() -->
-        <ng-container *ngIf="products != null || products != undefined">
+        <ng-container *ngIf="isNullOrUndefined">
             <app-product class="col-md-4" *ngFor="let product of products; let i = index"
                 (addNewProduct)="addNewProduct($event)" [product]="product"></app-product>
         </ng-container>

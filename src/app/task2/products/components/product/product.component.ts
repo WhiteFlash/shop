@@ -7,10 +7,7 @@ import { IProduct } from 'src/app/task2/shared/model/shop.model';
   styleUrls: ['./product.component.sass']
 })
 export class ProductComponent {
-  // Я бы так не делал, так как инпут не принимает null, а принимает только IProduct,
-  // так как он дочерний компонент для ProductListComponent.
-  // Это позволит убрать проверки в шаблоне.
-  @Input() product: IProduct | null = null;
+  @Input() product!: IProduct;
   @Output() addNewProduct = new EventEmitter<IProduct>();
 
   onAddToCart(product: IProduct) {
