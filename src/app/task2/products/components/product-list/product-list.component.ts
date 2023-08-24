@@ -11,7 +11,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   private _productsService = inject(ShopService);
 
-  products!: null | IProduct[];
+  products: IProduct[] = [];
+
+  get isNullOrUndefined() {
+    return this.products != null || this.products != undefined
+  }
 
   addNewProduct(value: IProduct): void {
     this._productsService.addProduct(value);

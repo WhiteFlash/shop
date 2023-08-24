@@ -7,7 +7,7 @@ import { IProduct } from 'src/app/task2/shared/model/shop.model';
   styleUrls: ['./product.component.sass']
 })
 export class ProductComponent {
-  @Input() product: IProduct | null = null;
+  @Input() product!: IProduct;
   @Output() addNewProduct = new EventEmitter<IProduct>();
 
   onAddToCart(product: IProduct) {
