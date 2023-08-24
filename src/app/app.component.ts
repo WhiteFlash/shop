@@ -9,6 +9,7 @@ export class AppComponent implements AfterViewChecked {
   @ViewChild('appTitle')
   appTitle!: ElementRef<HTMLHeadingElement>;
 
+  // Этот метод запускается периодически, если надо разово, то можно использовать ngAfterViewInit
   ngAfterViewChecked(): void {
     this.appTitle.nativeElement.innerHTML = "Anguler приложение для покупки товаров";
   }

@@ -13,6 +13,7 @@ import { Task2Module } from './task2/task2.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    // Думаю, что это не очень удачное название для модулей, так как они не отражают суть того, что в них происходит.
     Task1Module,
     Task2Module
   ],
