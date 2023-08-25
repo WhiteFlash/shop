@@ -6,16 +6,14 @@ import { YesNoPipe } from "../shared/pipes/yes-no.pipe";
 import { HighlightDirective } from '../shared/directives/highlight.directive';
 
 @NgModule({
-  declarations: [
-    CartListComponent,
-    CartItemComponent
-  ],
-  imports: [
-    CommonModule,
-    YesNoPipe
-  ],
-  providers: [
-    HighlightDirective
-  ]
+    imports: [
+        CommonModule,
+        YesNoPipe,
+        CartListComponent,
+        CartItemComponent
+    ],
+    providers: [
+        HighlightDirective
+    ]
 })
 export class CartModule { }

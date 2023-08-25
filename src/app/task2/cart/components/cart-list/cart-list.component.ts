@@ -3,11 +3,15 @@ import { CartService } from '../../services/cart.service';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 import { ShopService } from 'src/app/task2/shared/services/shop.service';
 import { IProduct } from 'src/app/task2/shared/model/shop.model';
+import { CartItemComponent } from '../cart-item/cart-item.component';
+import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-cart-list',
-  templateUrl: './cart-list.component.html',
-  styleUrls: ['./cart-list.component.sass']
+    selector: 'app-cart-list',
+    templateUrl: './cart-list.component.html',
+    styleUrls: ['./cart-list.component.sass'],
+    standalone: true,
+    imports: [NgIf, NgFor, CartItemComponent, CurrencyPipe]
 })
 export class CartListComponent implements OnInit, OnDestroy {
   private subscription: Subscription[] = [];
