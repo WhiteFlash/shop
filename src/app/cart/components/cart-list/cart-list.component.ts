@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { BehaviorSubject, Subscription, tap } from 'rxjs';
-import { ShopService } from 'src/app/task2/shared/services/shop.service';
-import { IProduct } from 'src/app/task2/shared/model/shop.model';
+import { Subscription, tap } from 'rxjs';
+import { ShopService } from 'src/app/shared/services/shop.service';
+import { IProduct } from 'src/app/shared/model/shop.model';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-cart-list',
-    templateUrl: './cart-list.component.html',
-    styleUrls: ['./cart-list.component.sass'],
-    standalone: true,
-    imports: [NgIf, NgFor, CartItemComponent, CurrencyPipe]
+  selector: 'app-cart-list',
+  templateUrl: './cart-list.component.html',
+  styleUrls: ['./cart-list.component.sass'],
+  standalone: true,
+  imports: [NgIf, NgFor, CartItemComponent, CurrencyPipe]
 })
 export class CartListComponent implements OnInit, OnDestroy {
   private subscription: Subscription[] = [];
@@ -19,16 +19,16 @@ export class CartListComponent implements OnInit, OnDestroy {
   private cartService = inject(CartService);
   private shopService = inject(ShopService);
 
-  totalPrice!: number;
-  totalQuantity!: number;
-  items!: IProduct[];
+  totalPrice = 0;
+  totalQuantity = 0;
+  items: IProduct[] = [];
 
   ngOnInit(): void {
     this.cartService.setItemsToBuy(this.shopService.getProducts());
 
-    this.cartService.items$
+    this.subscription.push(this.cartService.items$
       .pipe(tap((x) => this.items = x))
-      .subscribe();
+      .subscribe());
 
     this.subscription.push(this.cartService.totalPrice$
       .pipe(tap((x) => this.totalPrice = x))

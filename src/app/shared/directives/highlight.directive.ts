@@ -2,6 +2,7 @@ import { Directive, HostListener, inject } from '@angular/core';
 
 @Directive({
   selector: '[highlight]',
+  standalone: true
 })
 export class HighlightDirective {
   input = inject(HTMLInputElement);
