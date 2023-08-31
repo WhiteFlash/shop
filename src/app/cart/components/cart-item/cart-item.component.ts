@@ -2,7 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { IProduct } from 'src/app/shared/model/shop.model';
 import { CartService } from '../../services/cart.service';
 import { YesNoPipe } from '../../../shared/pipes/yes-no.pipe';
-import { NgIf } from '@angular/common';
+import { CurrencyPipe, NgIf, UpperCasePipe } from '@angular/common';
 import { HighlightDirective } from 'src/app/shared/directives/highlight.directive';
 
 @Component({
@@ -10,7 +10,7 @@ import { HighlightDirective } from 'src/app/shared/directives/highlight.directiv
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.sass'],
   standalone: true,
-  imports: [NgIf, YesNoPipe, HighlightDirective]
+  imports: [NgIf, YesNoPipe, HighlightDirective, CurrencyPipe, UpperCasePipe]
 })
 export class CartItemComponent {
   @Input() item!: IProduct;

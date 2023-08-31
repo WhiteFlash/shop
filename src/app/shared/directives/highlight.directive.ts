@@ -1,19 +1,20 @@
-import { Directive, HostListener, inject } from '@angular/core';
+import { Directive, HostBinding, HostListener, Input, inject } from '@angular/core';
 
 @Directive({
   selector: '[highlight]',
   standalone: true
 })
 export class HighlightDirective {
-  input = inject(HTMLInputElement);
+  @Input() color: string = "lightgrey";
+  @HostBinding('style.background') backGroundColor!: string;
 
   @HostListener('mouseenter', ['$event'])
   onMouseEnter(): void {
-    this.input.style.backgroundColor = '#D2691E';
+    this.backGroundColor = this.color;
   }
 
   @HostListener('mouseleave', ['$event'])
   onMouseLeave(): void {
-    this.input.style.backgroundColor = '#FFFFFF';
+    this.backGroundColor = "";
   }
 }

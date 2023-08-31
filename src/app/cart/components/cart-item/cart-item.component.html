@@ -3,10 +3,10 @@
         <div highlight class="card">
             <div class="card-body">
                 <h5 class="card-title">
-                    Product name:
+                    {{item.name | uppercase}}
                 </h5>
                 <div class="card-text">
-                    Price: ${{item.price}} <br />
+                    Price: {{item.price | currency: 'EUR'}} <br />
                     Description: {{item.description}} <br />
                     Category: {{item.category }} <br />
                     Avaliable: {{item.isAvaliable | yesNo }} <br />
