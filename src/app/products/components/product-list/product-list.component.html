@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <ng-container *ngIf="isNullOrUndefined">
+        <ng-container *ngIf="productsService.products$| async">
             <app-product class="col-md-4" *ngFor="let product of products; let i = index"
                 (addNewProduct)="addNewProduct($event)" [product]="product"></app-product>
         </ng-container>
