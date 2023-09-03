@@ -1,15 +1,28 @@
 <div class="container border rounded p-3">
-    <div class="d-flex justify-content-between">
-        <span class="badge text-bg-primary">Quantity of bought goods: {{totalQuantity}}</span>
-        <span class="badge text-bg-primary">Total price: {{totalPrice | currency}}</span>
+  <div class="d-flex justify-content-between">
+    <span class="badge text-bg-primary">Quantity of bought goods: {{totalQuantity}}</span>
+    <span class="badge text-bg-primary">Total price: {{totalPrice | currency}}</span>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" (click)="orderByArray($event)" />
+      <label class="form-check-label" for="flexCheckDefault">
+        Сортировать по возрастанию
+      </label>
     </div>
-    <br />
-    <div class="row">
-        <ng-container *ngIf="items != null || items != undefined">
-            <app-cart-item class="col-md-4" *ngFor="let item of items; let i = index" [item]="item"></app-cart-item>
-        </ng-container>
-        <ng-template>
-            <p>The bucket is empty</p>
-        </ng-template>
+
+    <div class="form-check">
+      <select class="form-select" (change)="setFilterByArray($event)">
+        <option *ngFor="let option of sortOptions;  let i = index" value="{{option}}"> {{option}}</option>
+      </select>
     </div>
+  </div>
+  <br />
+  <div class="row">
+    <ng-container *ngIf="(items | orderBy: selectedOption: isAcsending) as result">
+      <app-cart-item class="col-md-4" *ngFor="let item of result; let i = index" [item]="item"></app-cart-item>
+    </ng-container>
+    <ng-template>
+      <p>The bucket is empty</p>
+    </ng-template>
+  </div>
 </div>

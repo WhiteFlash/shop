@@ -5,18 +5,13 @@ import { CartListComponent } from './cart/components/cart-list/cart-list.compone
 
 const routes: Routes = [
   {
-    path: 'task2',
-    children: [
-      {
-        path: 'products',
-        component: ProductListComponent
-      },
-      {
-        path: 'carts',
-        component: CartListComponent
-      },
-    ]
-  }
+    path: 'products',
+    component: ProductListComponent
+  },
+  {
+    path: 'carts',
+    component: CartListComponent
+  },
 ];
 
 @NgModule({

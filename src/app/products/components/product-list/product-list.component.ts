@@ -3,7 +3,6 @@ import { IProduct } from 'src/app/shared/model/shop.model';
 import { ShopService } from 'src/app/shared/services/shop.service';
 import { ProductComponent } from '../product/product.component';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -26,10 +25,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.productsService.products$.subscribe(x => this.products = x);
+    this.productsService.products$.subscribe(x => this.products = x);
   }
 
   ngOnDestroy(): void {
-    // this.productsService.products$.unsubscribe()
+    this.productsService.products$.unsubscribe()
   }
 }

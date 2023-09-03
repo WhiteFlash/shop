@@ -4,14 +4,15 @@ import { Subscription, tap } from 'rxjs';
 import { ShopService } from 'src/app/shared/services/shop.service';
 import { IProduct } from 'src/app/shared/model/shop.model';
 import { CartItemComponent } from '../cart-item/cart-item.component';
-import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
+import { NgIf, NgFor, CurrencyPipe, CommonModule } from '@angular/common';
+import { OrderByPipe } from 'src/app/shared/pipes/order-by.pipe';
 
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.sass'],
   standalone: true,
-  imports: [NgIf, NgFor, CartItemComponent, CurrencyPipe]
+  imports: [NgIf, NgFor, CartItemComponent, CurrencyPipe, OrderByPipe, CommonModule]
 })
 export class CartListComponent implements OnInit, OnDestroy {
   private subscription: Subscription[] = [];
@@ -22,6 +23,9 @@ export class CartListComponent implements OnInit, OnDestroy {
   totalPrice = 0;
   totalQuantity = 0;
   items: IProduct[] = [];
+  isAcsending = false;
+  sortOptions = ['name', 'price', 'quantity'];
+  selectedOption = 'name'
 
   ngOnInit(): void {
     this.cartService.setItemsToBuy(this.shopService.getProducts());
@@ -42,4 +46,7 @@ export class CartListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.forEach(x => x.unsubscribe);
   }
+
+  orderByArray = (event: any) => this.isAcsending = this.isAcsending ? event.checked : !event.checked;
+  setFilterByArray = (event: any) => this.selectedOption = event.value;
 }

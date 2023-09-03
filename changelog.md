@@ -1,4 +1,10 @@
 All notable changes to this project will be documented in this file.
+### Task 4:
+### Добавлены Pipes
+- Добавлены встроеные pipes для компонента `CardComponent`
+- Метод `getProducts` сервиса `ProductService` возвращает `Observable`
+- Создана custom pipe `OrderByPipe` (простой вариант)
+- Применена `OrderByPipe` для компонента `CardList`
 
 ### Task 2
 ### Added: Complete bullet 2 from task list
