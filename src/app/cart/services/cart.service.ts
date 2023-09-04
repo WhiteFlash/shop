@@ -7,6 +7,7 @@ import { IProduct } from '../../shared/model/shop.model';
   providedIn: 'root'
 })
 export class CartService implements OnDestroy {
+  // где используется?
   private subscription: Subscription[] = [];
 
   private totalPrice = new BehaviorSubject<number>(0);
