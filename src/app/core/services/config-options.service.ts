@@ -15,7 +15,6 @@ export class ConfigOptionsService {
   private config = new ConfigModel(1, 'LogIn', 'Email@email.com');
 
   setConfig(newConfig: ConfigModel) {
-    // тут лучше делать копию объекта, а не присваивать ссылку
     this.config = newConfig;
   }
 
