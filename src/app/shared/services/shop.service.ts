@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ShopService {
   products: Array<IProduct> = this.getProducts();
   products$ = new BehaviorSubject<IProduct[]>(this.products);
+
   constructor() { }
 
   getProducts(): Array<IProduct> {
@@ -19,7 +20,7 @@ export class ShopService {
       isAvaliable: true,
       category: Category.Phone,
       inTheBasket: true,
-      quantity: 1
+      quantity: 0
     },
     {
       id: 2,
@@ -28,7 +29,7 @@ export class ShopService {
       price: 1500,
       isAvaliable: true,
       category: Category.Phone,
-      quantity: 1,
+      quantity: 0,
       inTheBasket: true
     },
     {
@@ -39,7 +40,17 @@ export class ShopService {
       isAvaliable: true,
       category: Category.Car,
       quantity: 0,
-      inTheBasket: false
+      inTheBasket: true
+    },
+    {
+      id: 4,
+      name: 'Ferrari FFX',
+      description: 'Cool car',
+      price: 320000,
+      isAvaliable: true,
+      category: Category.Car,
+      quantity: 0,
+      inTheBasket: true
     }]
 
     return items;

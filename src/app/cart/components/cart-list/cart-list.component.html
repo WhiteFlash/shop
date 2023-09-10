@@ -15,6 +15,8 @@
         <option *ngFor="let option of sortOptions;  let i = index" value="{{option}}"> {{option}}</option>
       </select>
     </div>
+
+    <button class="btn btn-success" (click)="goToOrderPage()" routerLinkActive="active">Order</button>
   </div>
   <br />
   <div class="row">

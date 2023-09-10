@@ -6,6 +6,7 @@ import { IProduct } from 'src/app/shared/model/shop.model';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 import { NgIf, NgFor, CurrencyPipe, CommonModule } from '@angular/common';
 import { OrderByPipe } from 'src/app/shared/pipes/order-by.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-list',
@@ -19,13 +20,14 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   private cartService = inject(CartService);
   private shopService = inject(ShopService);
+  private router = inject(Router);
 
   totalPrice = 0;
   totalQuantity = 0;
   items: IProduct[] = [];
   isAcsending = false;
   sortOptions = ['name', 'price', 'quantity'];
-  selectedOption = 'name'
+  selectedOption = 'name';
 
   ngOnInit(): void {
     this.cartService.setItemsToBuy(this.shopService.getProducts());
@@ -49,4 +51,5 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   orderByArray = (event: any) => this.isAcsending = this.isAcsending ? event.checked : !event.checked;
   setFilterByArray = (event: any) => this.selectedOption = event.value;
+  goToOrderPage = () => this.router.navigate(['order']);
 }
