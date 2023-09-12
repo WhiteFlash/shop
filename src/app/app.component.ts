@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,16 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('appTitle')
   appTitle!: ElementRef<HTMLHeadingElement>;
 
+  authService = inject(AuthService);
+  router = inject(Router)
+
   ngAfterViewInit(): void {
     this.appTitle.nativeElement.innerHTML = "Anguler приложение для покупки товаров";
+  }
+
+  changeIsAdmin() {
+    this.authService.isAdmin ? false : true;
+    this.authService.isLoggedIn ? false : true;
+    this.router.navigate(['admin']);
   }
 }

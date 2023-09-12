@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
-import { canLoadGuard } from "./core/guards/can-load.guard";
+import { canLoadBasketGuard } from "./core/guards/can-load-basket.guard";
+import { canActivateAdminGuard } from "./core/guards/can-activate-admin.guard";
 
 export const routes: Routes = [
   {
@@ -12,7 +13,12 @@ export const routes: Routes = [
   },
   {
     path: 'order',
-    canActivate: [canLoadGuard],
+    canActivate: [canLoadBasketGuard],
     loadComponent: () => import('./process-order/process-order.component').then(x => x.ProcessOrderComponent)
+  },
+  {
+    path: 'admin',
+    canActivate: [canActivateAdminGuard],
+    loadComponent: () => import('./admin/admin.component').then(x => x.AdminComponent)
   }
 ];
