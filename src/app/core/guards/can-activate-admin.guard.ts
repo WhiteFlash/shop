@@ -7,6 +7,7 @@ export const canActivateAdminGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const { url } = state;
 
+  // в этом методе нет проверки роли пользователя
   if (authService.checkLogin(url)) {
     return true;
   } else {
