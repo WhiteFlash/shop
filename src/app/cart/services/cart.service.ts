@@ -1,6 +1,7 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, inject } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { IProduct } from '../../shared/model/shop.model';
+import { CartObservableService } from './cart-observable.service';
 
 
 @Injectable({
@@ -9,6 +10,8 @@ import { IProduct } from '../../shared/model/shop.model';
 export class CartService implements OnDestroy {
   private subscription: Subscription[] = [];
 
+  private readonly cartObservableService = inject(CartObservableService);
+
   private totalPrice = new BehaviorSubject<number>(0);
   private totalQuantity = new BehaviorSubject<number>(0);
   private items = new BehaviorSubject<IProduct[]>([]);
@@ -16,6 +19,10 @@ export class CartService implements OnDestroy {
   items$ = this.items.asObservable();
   totalQuantity$ = this.totalQuantity.asObservable();
   totalPrice$ = this.totalPrice.asObservable();
+
+  getProducts() {
+    this.cartObservableService.getCartItems().subscribe(x => this.items.next(x));
+  }
 
   addProduct(product: IProduct): void {
     const index = this.items.value.findIndex(x => x.id === product.id);

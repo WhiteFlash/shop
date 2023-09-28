@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Category, IProduct } from '../model/shop.model';
 import { BehaviorSubject } from 'rxjs';
+import { ProductPromiseService } from './product-promise.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class ShopService {
   products: Array<IProduct> = this.getProducts();
   products$ = new BehaviorSubject<IProduct[]>(this.products);
 
-  constructor() { }
+  private readonly productPromiceService = inject(ProductPromiseService);
 
   getProducts(): Array<IProduct> {
     let items = [{
@@ -52,7 +53,6 @@ export class ShopService {
       quantity: 0,
       inTheBasket: true
     }]
-
     return items;
   }
 
