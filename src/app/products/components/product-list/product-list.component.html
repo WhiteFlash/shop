@@ -1,6 +1,6 @@
 <div class="row">
-  <ng-container *ngIf="productsService.products$ | async">
-    <app-product-view class="col-md-4" *ngFor="let product of productsService.products; let i = index"
+  <ng-container *ngIf="productState$ | async as state">
+    <app-product-view class="col-md-4" *ngFor="let product of (productState$ | async )?.products; let i = index"
       [product]="product"></app-product-view>
   </ng-container>
 </div>

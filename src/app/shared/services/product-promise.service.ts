@@ -8,11 +8,11 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductPromiseService {
-  url = environment.url;
-  http = inject(HttpClient)
+  private readonly url = environment.url;
+  private readonly http = inject(HttpClient)
 
   getProducts(): Promise<IProduct[]> {
-    const request$ = this.http.get<IProduct[]>(this.url);
+    const request$ = this.http.get<IProduct[]>(`${this.url}/products`);
     return firstValueFrom(request$);
   }
 
