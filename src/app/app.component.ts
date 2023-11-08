@@ -26,3 +26,4 @@ export class AppComponent implements AfterViewInit {
     this.router.navigate(['admin']);
   }
 }
+// ok
